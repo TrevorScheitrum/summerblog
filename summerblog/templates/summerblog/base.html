@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!doctype html>
+
+<div id="page">
+	<head>
+	<link href="{% static "css/main.css" %}" rel="stylesheet" type="text/css" />
+	
+	<div id="banner">
+
+		{% block head %}
+		{% endblock %}
+		
+		
+	</div>
+	
+	</head>
+	
+	<div id="colA">
+		{% block colA %}
+		{% endblock %}
+	</div>
+	
+	<div id="colB">
+		<body>
+		{% block content %}
+		{% endblock %}
+		</body>
+	</div>
+	
+	<div id="colC">
+		{% block colC %}
+		{% endblock %}
+	</div>
+
+	<div id="footer">
+		{% block footer %}
+		{% endblock %}
+	</div>
+	
+</div>
+</html>

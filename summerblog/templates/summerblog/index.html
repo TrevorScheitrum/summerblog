@@ -1,0 +1,23 @@
+{% extends "summerblog/base.html" %}
+
+
+{% block head %}
+
+{% load staticfiles %}
+<link href="{% static "css/main.css" %}" rel="stylesheet" type="text/css" />
+
+<h1>Summer Blog</h1>
+
+
+{% block content %}
+{% endblock %}
+	{% for article in articles %}
+		<h3>{{ article.title }} - {{ article.author }} </h3>
+		- {{ article.date }}
+		<br />
+		{{ article.text | safe }}
+		<br />
+		<br />
+	{% endfor %}
+
+{% endblock %}
