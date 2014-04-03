@@ -1,17 +1,20 @@
 from django.contrib import admin
-from summerblog.models import Article, Author, Photo
+from summerblog.models import Article, Author, Photo2
 
 class AuthorInline(admin.StackedInline):
     model = Author
     extra = 3
-    
+
 class ArticleInline(admin.StackedInline):
     model = Article
     extra = 3
 
 class ArticleAdmin(admin.ModelAdmin):
-    inlines = [ArticleInline]
+    #inlines = [ArticleInline]
+    fields = ('title', 'date', 'author', 'text', 'photos',)
+    readonly_fields = ('photos',)
 
 
-myModels = [Article,Author,Photo]
-admin.site.register(myModels)
+myModels = [Article,Author,Photo2]
+#admin.site.register(myModels)
+admin.site.register(Article, ArticleAdmin)
