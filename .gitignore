@@ -9,3 +9,4 @@ dev.db
 maffettcreative
 staticfiles
 *.sqlite3
+ckeditor/
