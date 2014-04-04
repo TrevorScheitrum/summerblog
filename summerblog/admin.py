@@ -1,5 +1,5 @@
 from django.contrib import admin
-from summerblog.models import Article, Author, Photo2
+from summerblog.models import Article, Author, Photo
 
 class AuthorInline(admin.StackedInline):
     model = Author
@@ -13,5 +13,5 @@ class ArticleAdmin(admin.ModelAdmin):
     inlines = [ArticleInline]
 
 
-myModels = [Article,Author,Photo2]
+myModels = [Article,Author,Photo]
 admin.site.register(myModels)

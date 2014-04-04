@@ -10,9 +10,9 @@ class Author(models.Model):
     def __unicode__(self):
         return self.name
     
-class Photo2(models.Model):
+class Photo(models.Model):
     name = models.CharField(max_length = 200)
-    photo = models.ImageField(upload_to="photos2")
+    photo = models.ImageField(upload_to="photos")
     
     def __unicode__(self):
         return self.name

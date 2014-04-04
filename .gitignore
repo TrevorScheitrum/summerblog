@@ -8,3 +8,4 @@ pip-log.txt
 dev.db
 maffettcreative
 staticfiles
+*.sqlite3

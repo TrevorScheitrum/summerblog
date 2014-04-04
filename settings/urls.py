@@ -8,7 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'summerblog.views.home', name='home'),
+    url(r'^$', 'summerblog.views.index', name='index'),
     # url(r'^summerblog/', include('summerblog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^static_media/(?P<path>.*)$', 'django.views.static.serve',
      {'document_root': settings.MEDIA_ROOT}),
-    url(r'^summerblog/', include('summerblog.urls')),
+    url(r'^', include('summerblog.urls')),
 )
