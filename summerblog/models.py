@@ -1,5 +1,6 @@
 from BeautifulSoup import BeautifulSoup
 from django.db import models
+from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from django.db.models.fields.related import ManyToManyField
 
@@ -21,7 +22,7 @@ class Photo2(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length = 200)
     date = models.DateTimeField()
-    author = models.ForeignKey(Author)
+    author = models.ForeignKey(User)
     text = RichTextField(config_name='awesome_ckeditor')
 
     @property

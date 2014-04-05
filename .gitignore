@@ -10,3 +10,4 @@ maffettcreative
 staticfiles
 *.sqlite3
 ckeditor/
+uploads/

@@ -10,7 +10,7 @@ class ArticleInline(admin.StackedInline):
     extra = 3
 
 class ArticleAdmin(admin.ModelAdmin):
-    #inlines = [ArticleInline]
+    #inlines = [AuthorInline]
     fields = ('title', 'date', 'author', 'text', 'photos',)
     readonly_fields = ('photos',)
 
