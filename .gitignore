@@ -6,7 +6,6 @@
 local_settings.py
 pip-log.txt
 dev.db
-summerblog
 staticfiles
 *.sqlite3
 ckeditor/
