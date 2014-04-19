@@ -1,16 +1,7 @@
 {% extends "summerblog/base.html" %}
 
 
-{% block head %}
-
-{% load staticfiles %}
-<link href="{% static "css/main.css" %}" rel="stylesheet" type="text/css" />
-
-<h1>Album</h1>
-
-
 {% block content %}
-{% endblock %}
 	{% for photo in photos %}
 		{% for photoname in photo %}
 			<h3>{{ photoname.0 }} </h3>

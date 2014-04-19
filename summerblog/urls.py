@@ -9,8 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'summerblog.views.index', name='index'),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^static_media/(?P<path>.*)$', 'django.views.static.serve',
-     {'document_root': settings.MEDIA_ROOT}),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^album', views.album, name='album'),
     (r'^ckeditor/', include('ckeditor.urls')),
     )
