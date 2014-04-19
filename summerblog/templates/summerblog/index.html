@@ -1,23 +1,17 @@
 {% extends "summerblog/base.html" %}
 
-
-{% block head %}
-
-{% load staticfiles %}
-<link href="{% static "css/main.css" %}" rel="stylesheet" type="text/css" />
-
-<h1>Summer Blog</h1>
-
-{% endblock %}
 {% block content %}
 
 	{% for article in articles %}
-		<h3>{{ article.title }} - {{ article.author }} </h3>
-		- {{ article.date }}
+	
+	<div class="blog-post">
+		<h2 class="blog-post-title">{{ article.title }}</h2>
+		<p class="blog-post-meta">{{ article.date }} by {{ article.author }}</p>
 		<br />
 		{{ article.text | safe }}
-		<br />
-		<br />
+		<br /> <br />
+	</div>
+	
 	{% endfor %}
-
+	
 {% endblock %}

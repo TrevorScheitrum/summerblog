@@ -11,13 +11,14 @@
 
 {% block content %}
 {% endblock %}
-	{% for article in articles %}
-		<h3>{{ article.title }} - {{ article.author }} </h3>
-		- {{ article.date }}
-		<br />
-		{{ article.text | safe }}
-		<br />
-		<br />
+	{% for photo in photos %}
+		{% for photoname in photo %}
+			<h3>{{ photoname.0 }} </h3>
+			<br />
+			<img src="{{ photoname.1 }}"></img>
+			<br />
+			<br />
+		{% endfor %}
 	{% endfor %}
 
 {% endblock %}

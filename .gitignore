@@ -10,3 +10,4 @@ staticfiles
 *.sqlite3
 ckeditor/
 uploads/
+static-assets
