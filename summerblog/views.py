@@ -19,10 +19,12 @@ import boto
 def index(request):
     
     article_list = Article.objects.all().order_by('-date')
+    article_backgrounds = []
     
-    user_articles = []
+    for article in article_list:
+        article_backgrounds.append(article.background)
 
-    context = {'articles' : article_list, 'user_articles': user_articles}
+    context = {'articles' : article_list, 'backgrounds' : article_backgrounds}
     
     return render(request, 'summerblog/index.html', context)
     

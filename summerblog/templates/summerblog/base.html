@@ -21,10 +21,39 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+    	var img_urls = Array();
+    	var post_heights = Array();
+    	
+    	$( document ).ready(function() {
+    		$(".blog-post").each(function(index){
+    			post_heights.push($(this).position().top);
+    		});
+
+    		{% for background in backgrounds %}
+    			img_urls.push("{% static background.photo.url %}");
+    		{% endfor %}
+    		
+        	$("body").css("background", "url('"+img_urls[0]+"') no-repeat center center fixed");
+        	$("body").css("background-size", "cover");
+    	});
+    	
+    	
+		$( document ).scroll(function() {
+			$.each(post_heights, function( index, value ) {
+				if ($( document ).scrollTop() >= value) {
+					$("body").css("background", "url('"+img_urls[index]+"') no-repeat center center fixed");
+					$("body").css("background-size", "cover");
+				}
+			});
+		});
+	</script>
+    
+    
 </head>
 
 <body>
-
 	<div class="blog-masthead">
 		<div class="container">
 			<nav class="blog-nav">
@@ -34,7 +63,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container transparent_background">
 
 		<div class="blog-header">
 			<h1 class="blog-title">Summer Blog</h1>
