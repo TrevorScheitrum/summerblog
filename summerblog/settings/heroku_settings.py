@@ -68,8 +68,3 @@ LOGIN_REDIRECT_URL = "/"
 AWS_QUERYSTRING_AUTH = False
 STATIC_URL = 'http://s3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME + '/'
 
-# try to import local settings overrides (not under source control)
-try:
-    from settings import *
-except:
-    pass
