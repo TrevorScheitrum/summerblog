@@ -23,7 +23,7 @@ class ArticleHistoryInline(admin.StackedInline):
     fields = ('article','text',)
     
 class ArticleAdmin(admin.ModelAdmin):
-    fields = ('title', 'date', 'author', 'background', 'text', 'photos',) #'article_history',)
+    fields = ('title', 'author', 'background', 'text', 'photos',) #'article_history',)
     readonly_fields = ('photos',)
 
 

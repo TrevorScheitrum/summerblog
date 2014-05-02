@@ -1,10 +1,6 @@
 # Django settings for summerblog project.
 import os
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-TIME_ZONE = None
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ADMINS = (
@@ -13,26 +9,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-             
-    'default': {
-       'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-       'NAME': os.path.join(BASE_DIR, 'summerblog.sqlite3'),                      # Or path to database file if using sqlite3.
-        #'ENGINE' : 'django.db.backends.mysql',
-        #'NAME': 'summerblog',
-        # The following settings are not used with sqlite3:
-        #'USER': 'root',
-        #'PASSWORD': 'matrix3',
-        #'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        #'PORT': '3306',                      # Set to empty string for default.
-    }
-}
-
-
-
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -57,21 +36,6 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media-assets/')
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://example.com/media/", "http://media.example.com/"
-
-ADMIN_MEDIA_PREFIX = '/media/'
-
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
-STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static-assets')
 
 # URL prefix for static files.
 # Additional locations of static files
@@ -110,7 +74,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'summerblog.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'summerblog.wsgi_local.application'
+WSGI_APPLICATION = 'summerblog.wsgi_webfaction.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -132,7 +96,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'summerblog',
     'ckeditor',
-    'storages',
+    #'storages',
 )
 
 #CKEDITOR_UPLOAD_PATH = "/home/media/uploads"
@@ -143,6 +107,8 @@ CKEDITOR_CONFIGS = {
     },
 }
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_RESIZE_RESOLUTION = (800,600)
+
 #DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
@@ -186,20 +152,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 AUTH_PROFILE_MODULE = 'django.auth_user'
 
-LOGIN_URL = "django.contrib.auth.views.login"  # not 100% necessary
-LOGIN_REDIRECT_URL = "/"
+#LOGIN_URL = "django.contrib.auth.views.login"  # not 100% necessary
+#LOGIN_REDIRECT_URL = "/"
 
 
 
 #STATIC_URL = S3_URL + STATIC_DIRECTORY
-
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-
-
-
-# try to import local settings overrides (not under source control)
-try:
-    from local_settings import *
-except:
-    pass

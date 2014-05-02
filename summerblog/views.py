@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse
-from django.utils import simplejson
+import json
 
 from django.conf import settings
 import boto
@@ -21,10 +21,12 @@ def index(request):
     article_list = Article.objects.all().order_by('-date')
     article_backgrounds = []
     
+    article_archive = Article.objects.values('title', 'date', 'id').order_by("-date")
+    
     for article in article_list:
         article_backgrounds.append(article.background)
 
-    context = {'articles' : article_list, 'backgrounds' : article_backgrounds}
+    context = {'articles' : article_list, 'backgrounds' : article_backgrounds, 'article_archive' : article_archive}
     
     return render(request, 'summerblog/index.html', context)
     

@@ -30,7 +30,7 @@ class Background(models.Model):
     
 class Article(models.Model):
     title = models.CharField(max_length = 200)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User)
     background = models.ForeignKey(Background)
     text = RichTextField(config_name='awesome_ckeditor')
@@ -75,3 +75,6 @@ class ArticleHistory(models.Model):
         current_version = ArticleHistory.objects.filter(article=self.article).order_by('-version')[:1]
         self.version = current_version[0].version + 1 if current_version else 1
         super(ArticleHistory, self).save(*args, **kwargs)
+        
+    def __unicode__(self):
+        return self.article.title

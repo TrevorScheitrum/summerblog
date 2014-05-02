@@ -12,3 +12,6 @@ ckeditor/
 uploads/
 static-assets
 media-assets
+setup
+.vagrant
+.settings

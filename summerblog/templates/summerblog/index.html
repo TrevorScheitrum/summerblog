@@ -3,6 +3,11 @@
 
 {% block content %}
 
+	{% for article in article_archive %}
+		{{ article.date | date}}
+		{{article.title}}
+	{% endfor %}
+
 	{% for article in articles %}
 	
 	<div class="blog-post">
