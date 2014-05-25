@@ -21,44 +21,38 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-	<script src="{% static "js/jquery-1.11.0.min.js" %}"></script>
-	<script type="text/javascript" src="{% static "js/skrollr.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/jquery-1.11.0.min.js" %}"></script>
     <script type="text/javascript">
     	var img_urls = Array();
     	var post_heights = Array();
     	
-    	$( document ).ready(function() {    		
-    		var post_heights = [];
-    		var names = [];
-    		
-    		
+    	$( document ).ready(function() {
     		$(".blog-post").each(function(index){
     			post_heights.push(Math.floor($(this).position().top));
     		});
 
-    		
     		{% for background in backgrounds %}
     			img_urls.push("{% static background.photo.url %}");
-    			names.push("data-" + post_heights[{{ forloop.counter0 }}]);
     		{% endfor %}
     		
-    		
-    		for(var index=0; index < names.length; index++){
-    			$("#body2").attr(names[index], "background-image:!url('" + img_urls[index] + "');");
-    		}
-
-			$("#body2").attr("style", "background-size:cover;background-repeat:no-repeat;background-attachment:fixed;background-position:center;");
-			
-        	var s = skrollr.init();
+        	$("body").css("background", "url('"+img_urls[0]+"') no-repeat center center fixed");
+        	$("body").css("background-size", "cover");
     	});
+    	
+		$( document ).scroll(function() {
+			$.each(post_heights, function( index, value ) {
+				if ($( document ).scrollTop() >= value) {
+					$("body").css("background", "url('"+img_urls[index]+"') no-repeat center center fixed");
+					$("body").css("background-size", "cover");
+				}
+			});
+		});
 	</script>
     
     
 </head>
 
 <body>
-<div id="body2">
 	<div class="blog-masthead">
 		<div class="container">
 			<nav class="blog-nav">
@@ -87,8 +81,7 @@
 
 			<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 				<div class="sidebar-module sidebar-module-inset">
-					<h4><a href="">Pictures</a></h4>
-					<br />
+					<h4><a href=""></a></h4>
 					<h4>Schedule</h4>
 					<TABLE CELLSPACING="0" COLS="2" BORDER="0" id="scheduleTable">
 						<COLGROUP SPAN="2" WIDTH="107"></COLGROUP>
@@ -344,21 +337,16 @@
 	<!-- /.container -->
 
 	<div class="blog-footer">
-	
-		{% block footer %}
-		{% endblock %}
-		
-		<br />
-		
-		<a href="#">Back to top</a>
+		<p>
+			<a href="#">Back to top</a>
+		</p>
 	</div>
+
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="{% static "js/bootstrap.min.js" %}" rel="stylesheet"></script>
 	<script src="{% static "js/docs.min.js" %}" rel="stylesheet"></script>
-	
-	</div>
 </body>
 </html>

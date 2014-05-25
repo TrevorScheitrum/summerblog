@@ -3,21 +3,49 @@
 
 {% block content %}
 
-	{% for article in article_archive %}
+<!--  	{% for article in article_archive %}
 		{{ article.date | date}}
 		{{article.title}}
 	{% endfor %}
+-->
+
 
 	{% for article in articles %}
 	
 	<div class="blog-post">
 		<h2 class="blog-post-title">{{ article.title }}</h2>
-		<p class="blog-post-meta">{{ article.date }} by {{ article.author }}</p>
-		<br />
+		<p class="blog-post-meta">{{ article.date }} by {{ article.author.first_name }}</p>
 		{{ article.text | safe }}
 		<br /> <br />
 	</div>
-	
+
+{% endfor %}
+
+{% endblock %}
+
+
+{% block footer %}
+<div class="flickr_pagination">
+		{% if articles.has_previous %}
+			<a class="flickr_pagination previous" href="?page={{articles.previous_page_number}}">previous</a>
+		{% else %}
+			<a class="flickr_pagination previous">previous</a>
+		{% endif %}
+		
+	{% for index in articles.paginator.page_range %}
+		{% if index == articles.number %}
+			<a class="flickr_pagination current" href="?page={{index}}">{{index}}</a>
+		{% else %}
+			<a class="flickr_pagination" href="?page={{index}}">{{index}}</a>
+		{% endif %}
 	{% endfor %}
 	
+		{% if articles.has_next %}
+			<a class="flickr_pagination previous" href="?page={{articles.next_page_number}}">next</a>
+		{% else %}
+			
+			<a class="flickr_pagination previous">next</a>
+		{% endif %}
+</div>
+
 {% endblock %}

@@ -16,17 +16,31 @@ import boto
 
 
 
-def index(request):
+def index(request):               
     
     article_list = Article.objects.all().order_by('-date')
     article_backgrounds = []
     
     article_archive = Article.objects.values('title', 'date', 'id').order_by("-date")
     
-    for article in article_list:
+    paginator = Paginator(article_list, 5)
+
+    page = request.GET.get('page')
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        articles = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        articles = paginator.page(paginator.num_pages)
+    
+    
+    for article in articles:
         article_backgrounds.append(article.background)
 
-    context = {'articles' : article_list, 'backgrounds' : article_backgrounds, 'article_archive' : article_archive}
+
+    context = {'articles' : articles, 'backgrounds' : article_backgrounds, 'article_archive' : article_archive}
     
     return render(request, 'summerblog/index.html', context)
     
