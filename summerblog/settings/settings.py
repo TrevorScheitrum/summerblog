@@ -80,6 +80,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "/home/trevor/workspace/summerblog/summerblog/templates/photologue"
 )
 
 INSTALLED_APPS = (
@@ -97,6 +98,11 @@ INSTALLED_APPS = (
     'summerblog',
     'ckeditor',
     #'storages',
+    'photologue',
+    'south',               # if it's not already in your INSTALLED_APPS.
+    'sortedm2m',
+    'tagging',
+    'progressbarupload',
 )
 
 #CKEDITOR_UPLOAD_PATH = "/home/media/uploads"
@@ -158,3 +164,10 @@ AUTH_PROFILE_MODULE = 'django.auth_user'
 
 
 #STATIC_URL = S3_URL + STATIC_DIRECTORY
+PHOTOLOGUE_MAXBLOCK =  1024 * 2 ** 10
+
+FILE_UPLOAD_HANDLERS = (
+    "progressbarupload.uploadhandler.ProgressBarUploadHandler",
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+)

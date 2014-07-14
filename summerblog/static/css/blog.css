@@ -100,12 +100,13 @@ h6, .h6 {
   font-size: 1.2em;
   line-height: 1.5;
   color:black;
+  margin-right:0px;
+  padding-right:0px;
 }
 
 /* Sidebar modules for boxing content */
 .sidebar-module {
-  padding: 15px;
-  margin: 0 -15px 15px;
+	
 }
 .sidebar-module-inset {
   padding: 15px;
@@ -166,6 +167,7 @@ h6, .h6 {
 
 .transparent_background{
 	background-color: rgba(255, 255, 255, 0.8);
+    min-height:600px;
 }
 
 
@@ -218,3 +220,22 @@ h6, .h6 {
 .flickr_pagination .next_page {
 	margin-left: 1em;
 }
+
+.photo-gallery{
+	padding-bottom:50px;
+	margin-bottom:15px;
+}
+
+.photo-gallery:hover{
+	background-color:#BDBDBD;
+	text-decoration:none;
+}
+
+.photo-gallery:hover a{
+	text-decoration:none;
+}
+
+.gallery-photo{
+	display:inline-block;
+}
+

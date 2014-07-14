@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from summerblog.models import Article, Author, Photo, User
+from photologue.models import Photo, Gallery
+from photologue.managers import GalleryQuerySet, PhotoQuerySet
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, redirect
@@ -39,7 +41,6 @@ def index(request):
     for article in articles:
         article_backgrounds.append(article.background)
 
-
     context = {'articles' : articles, 'backgrounds' : article_backgrounds, 'article_archive' : article_archive}
     
     return render(request, 'summerblog/index.html', context)
@@ -60,4 +61,20 @@ def album(request):
     context = {'photos' : photo_list}
     
     return render(request, 'summerblog/album.html', context)
+    
+def gallery(request):
+    
+    gallery_list = Gallery.objects.on_site().is_public().order_by('-date_added')
+    
+    context = {'gallery_list' : gallery_list}
+    
+    return render(request, 'summerblog/gallery_archive.html', context)
+
+def photos(request, slug):
+
+    gallery_list = Gallery.objects.on_site().is_public().get(slug=slug)
+    
+    context = {'object' : gallery_list}
+    
+    return render(request, 'summerblog/gallery_detail.html', context)
     

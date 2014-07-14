@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
 <title>Summer Travel Blog 2014</title>
 
@@ -15,6 +14,7 @@
 <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
 <!-- Custom styles for this template -->
 <link href="{% static "css/blog.css" %}" rel="stylesheet" type="text/css" />
+<link href="{% static "css/lightbox.css" %}" rel="stylesheet" />
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -23,34 +23,11 @@
     <![endif]-->
 
 	<script src="{% static "js/jquery-1.11.0.min.js" %}"></script>
-	<script type="text/javascript" src="{% static "js/skrollr.min.js" %}"></script>
-    <script type="text/javascript">
-    	var img_urls = Array();
-    	var post_heights = Array();
-    	
+	<script src="{% static "js/lightbox.min.js" %}"></script>
+    <script>    	
     	$( document ).ready(function() {    		
-    		var post_heights = [];
-    		var names = [];
-    		
-    		
-    		$(".blog-post").each(function(index){
-    			post_heights.push(Math.floor($(this).position().top));
-    		});
-
-    		
-    		{% for background in backgrounds %}
-    			img_urls.push("{% static background.photo.url %}");
-    			names.push("data-" + post_heights[{{ forloop.counter0 }}]);
-    		{% endfor %}
-    		
-    		
-    		for(var index=0; index < names.length; index++){
-    			$("#body2").attr(names[index], "background-image:!url('" + img_urls[index] + "');");
-    		}
-
-			$("#body2").attr("style", "background-size:cover;background-repeat:no-repeat;background-attachment:fixed;background-position:center;");
-			
-        	var s = skrollr.init();
+			$("body").css("background", "url('/media/backgrounds/IMG_2572.JPG') no-repeat center center fixed");
+			$("body").css("background-size", "cover");
     	});
 	</script>
     
@@ -58,12 +35,12 @@
 </head>
 
 <body>
-<div id="body2">
 	<div class="blog-masthead">
 		<div class="container">
 			<nav class="blog-nav">
-				<a class="blog-nav-item active" href="#">Home</a>
-				<a class="blog-nav-item" href="#">New features</a>
+				<a class="blog-nav-item active" href="{% url 'index'  %}">Blog</a>
+				<a class="blog-nav-item" href="/photologue/gallery/">Pictures</a>
+				<a class="blog-nav-item" href="{% url 'gallery'  %}">High Res Pictures</a>
 			</nav>
 		</div>
 	</div>
@@ -87,7 +64,7 @@
 
 			<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 				<div class="sidebar-module sidebar-module-inset">
-					<h4><a href="">Pictures</a></h4>
+					<h4><a href="/photologue">All Pictures</a></h4>
 					<br />
 					<h4>Schedule</h4>
 					<TABLE CELLSPACING="0" COLS="2" BORDER="0" id="scheduleTable">
@@ -164,17 +141,10 @@
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
-								SDNUM="1033;1033;General"><FONT FACE="Cambria">Vermilion
-									Cliff NM</FONT></TD>
-							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41788"
-								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">5/29/2014</FONT></TD>
-						</TR>
-						<TR>
-							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Antelope
 									Canyon</FONT></TD>
-							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41789"
-								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">5/30/2014</FONT></TD>
+							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
+								FACE="Cambria">5/29-5/30</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
@@ -222,80 +192,85 @@
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Joshua
 									Tree NP</FONT></TD>
-							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">6/10-6/11</FONT></TD>
-						</TR>
-						<TR>
-							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
-								SDNUM="1033;1033;General"><FONT FACE="Cambria">San
-									Diego</FONT></TD>
-							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">6/12-6/13</FONT></TD>
+							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41800"
+								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">6/10/2014</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Los
 									Angeles</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">6/14-6/17</FONT></TD>
+								FACE="Cambria">6/10-6/17</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
-								SDNUM="1033;1033;General"><FONT FACE="Cambria">(Via
-									Route 1)</FONT></TD>
+								SDNUM="1033;1033;General"><FONT FACE="Cambria">San
+									Diego</FONT></TD>
+							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
+								FACE="Cambria"><BR></FONT></TD>
+						</TR>
+						<TR>
+							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
+								SDNUM="1033;1033;General"><FONT FACE="Cambria">San
+									Luis Obispo</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
 								FACE="Cambria">6/18-6/19</FONT></TD>
+						</TR>
+						<TR>
+							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
+								SDNUM="1033;1033;General"><FONT FACE="Cambria">Monterey</FONT></TD>
+							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41810"
+								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">6/20/2014</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">San
 									Francisco</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">6/19-6/22</FONT></TD>
+								FACE="Cambria">6/21-6/22</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
-								SDNUM="1033;1033;General"><FONT FACE="Cambria">Muir
-									Woods NM</FONT></TD>
+								SDNUM="1033;1033;General"><FONT FACE="Cambria">Oakland</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria"><BR></FONT></TD>
+								FACE="Cambria">6/23-6/24</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Ashland</FONT></TD>
-							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41813"
-								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">6/23/2014</FONT></TD>
+							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41815"
+								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">6/25/2014</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Crater
 									Lake</FONT></TD>
-							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41814"
-								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">6/24/2014</FONT></TD>
+							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDVAL="41816"
+								SDNUM="1033;1033;M/D/YYYY"><FONT FACE="Cambria">6/26/2014</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Bend</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">6/24-6/29</FONT></TD>
+								FACE="Cambria">6/26-7/1</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Portland</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">6/30-7/2</FONT></TD>
+								FACE="Cambria">7/2-7/4</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Seattle</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">7/3-7/5</FONT></TD>
+								FACE="Cambria">7/5-7/7</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Whitefish</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">7/6-7/9</FONT></TD>
+								FACE="Cambria">7/8-7/11</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
@@ -309,30 +284,25 @@
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Yellowstone
 									NP</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">7/10-7/13</FONT></TD>
+								FACE="Cambria">7/12-7/14</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Grand
 									Teton NP</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">7/14-7/15</FONT></TD>
+								FACE="Cambria">7/15-7/16</FONT></TD>
 						</TR>
 						<TR>
 							<TD HEIGHT="21" ALIGN="LEFT" VALIGN=BOTTOM
 								SDNUM="1033;1033;General"><FONT FACE="Cambria">Salt
 									Lake City</FONT></TD>
 							<TD ALIGN="RIGHT" VALIGN=BOTTOM SDNUM="1033;1033;General"><FONT
-								FACE="Cambria">7/16-7/18</FONT></TD>
+								FACE="Cambria">7/17-7/19</FONT></TD>
 						</TR>
 					</TABLE>
 				</div>
 				<div class="sidebar-module">
-					<h4>Archives</h4>
-					<ol class="list-unstyled">
-						<li><a href="#">January 2014</a></li>
-						<li><a href="#">December 2013</a></li>
-					</ol>
 				</div>
 			</div>
 			<!-- /.blog-sidebar -->
@@ -359,6 +329,5 @@
 	<script src="{% static "js/bootstrap.min.js" %}" rel="stylesheet"></script>
 	<script src="{% static "js/docs.min.js" %}" rel="stylesheet"></script>
 	
-	</div>
 </body>
 </html>

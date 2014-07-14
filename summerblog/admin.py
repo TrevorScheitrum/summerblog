@@ -1,5 +1,6 @@
 from django.contrib import admin
 from summerblog.models import Article, Author, Photo, ArticleHistory, Background
+from photologue.models import Gallery
 
 class ArticleInline(admin.StackedInline):
     model = Article
@@ -23,7 +24,7 @@ class ArticleHistoryInline(admin.StackedInline):
     fields = ('article','text',)
     
 class ArticleAdmin(admin.ModelAdmin):
-    fields = ('title', 'author', 'background', 'text', 'photos',) #'article_history',)
+    fields = ('title', 'author','date','background','gallery', 'text', 'photos',) #'article_history',)
     readonly_fields = ('photos',)
 
 

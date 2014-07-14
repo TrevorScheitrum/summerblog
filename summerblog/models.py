@@ -5,6 +5,8 @@ from ckeditor.fields import RichTextField
 from django.db.models.fields.related import ManyToManyField
 from django.utils.html import format_html
 from django_resized import ResizedImageField
+from photologue.models import Gallery
+from django.utils import timezone
 
 # Create your models here.
 
@@ -30,9 +32,10 @@ class Background(models.Model):
     
 class Article(models.Model):
     title = models.CharField(max_length = 200)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=timezone.now())
     author = models.ForeignKey(User)
     background = models.ForeignKey(Background)
+    gallery = models.ForeignKey('photologue.Gallery', null=True, blank=True, default = None)
     text = RichTextField(config_name='awesome_ckeditor')
 
     @property
